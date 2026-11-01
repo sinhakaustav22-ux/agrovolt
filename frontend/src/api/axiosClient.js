@@ -1,13 +1,14 @@
+
 import axios from 'axios'
 
 const api = axios.create({
- baseURL: 'https://agrovolt-production.up.railway.app/api',
+  baseURL: `${(import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/+$/, '')}/api`,
   headers: { 'Content-Type': 'application/json' },
 })
 
 // ─── Crop ─────────────────────────────────────────────────────────────────
 export const predictCropYield = (data) => api.post('/crop/predict', data)
-export const getCropTypes     = ()     => api.get('/crop/crop-types')
+export const getCropTypes = () => api.get('/crop/crop-types')
 
 // ─── Solar ────────────────────────────────────────────────────────────────
 export const getSolarForecast = (data) => api.post('/solar/forecast', data)
@@ -19,8 +20,8 @@ export const getIrrigationRecommendation = (data) => api.post('/irrigation/recom
 export const getWeather = (lat, lon) => api.get(`/weather/${lat}/${lon}`)
 
 // ─── Farms ────────────────────────────────────────────────────────────────
-export const getFarms         = ()           => api.get('/farms/')
-export const createFarm       = (data)       => api.post('/farms/', data)
-export const getFarmPredictions = (farmId)   => api.get(`/farms/${farmId}/predictions`)
+export const getFarms = () => api.get('/farms/')
+export const createFarm = (data) => api.post('/farms/', data)
+export const getFarmPredictions = (farmId) => api.get(`/farms/${farmId}/predictions`)
 
 export default api
