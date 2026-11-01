@@ -10,7 +10,12 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "https://agrovolt.vercel.app"],  # React dev server
+    allow_origins=[
+        "http://localhost:5173",
+        "https://agrovolt.vercel.app",
+        "https://agrovolt-rztb.vercel.app",
+        "https://agrovolt-rztb-jcgv84aw5-sinhakaustav22-uxs-projects.vercel.app",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
